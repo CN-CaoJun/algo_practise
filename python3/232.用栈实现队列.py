@@ -40,3 +40,15 @@ class MyQueue:
 # param_4 = obj.empty()
 # @lc code=end
 
+
+if __name__ == "__main__":
+    queue = MyQueue()
+    queue.push(1)
+    queue.push(2)
+    print(queue.peek())  # 预期输出: 1
+    print(queue.pop())   # 预期输出: 1
+    print(queue.empty()) # 预期输出: False
+    queue.push(3)
+    print(queue.pop())   # 预期输出: 2
+    print(queue.pop())   # 预期输出: 3
+    print(queue.empty()) # 预期输出: True
