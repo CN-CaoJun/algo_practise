@@ -1,33 +1,36 @@
-#
-# @lc app=leetcode.cn id=144 lang=python3
-#
-# [144] 二叉树的前序遍历
-#
-
-# @lc code=start
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-from typing import List, Optional
+from typing import List
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
-        self._preorder(root, result)
-        return result
-    def _preorder(self, node: Optional[TreeNode], result: List[int]):
-        if node is None:
-            return
-        # Visit the root node
-        result.append(node.val)
-        # Traverse the left subtree
-        self._preorder(node.left, result)
-        # Traverse the right subtree
-        self._preorder(node.right, result)
-        
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
 
-# @lc code=end
+# Test cases
+if __name__ == "__main__":
+    # Test case 1: Simple binary tree
+    root1 = TreeNode(1, None, TreeNode(2, TreeNode(3)))
+    solution = Solution()
+    print(solution.preorderTraversal(root1))  # Expected output: [1, 2, 3]
 
+    # Test case 2: Empty tree
+    root2 = None
+    print(solution.preorderTraversal(root2))  # Expected output: []
+
+    # Test case 3: Full binary tree
+    root3 = TreeNode(1, TreeNode(2), TreeNode(3))
+    print(solution.preorderTraversal(root3))  # Expected output: [1, 2, 3]
+
+    # Test case 4: Left-skewed binary tree
+    root4 = TreeNode(1, TreeNode(2, TreeNode(3)))
+    print(solution.preorderTraversal(root4))  # Expected output: [1, 2, 3]
+
+    # Test case 5: Right-skewed binary tree
+    root5 = TreeNode(1, None, TreeNode(2, None, TreeNode(3)))
+    print(solution.preorderTraversal(root5))  # Expected output: [1, 2, 3]
