@@ -12,6 +12,8 @@ class Solution:
         result = []
         
         for num in nums1:
+            # count.get(num,0): Get value for key 'num', return 0 if key doesn't exist
+            # Add 1 to create/update the count for this number
             count[num] = count.get(num,0) + 1
         
         for num in nums2:
